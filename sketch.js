@@ -48,6 +48,20 @@ function draw(){
     }
     winCheck();
 }
+function keyPressed(){
+    if(keyCode=32){
+        // when space bar is pressed;
+        var x=mouseX;
+        var y=mouseY;
+        for(var i=0;i<rows;i++){
+            for(var j=0;j<columns;j++){
+                if(x>cells[i][j].x && x<cells[i][j].x+cells[i][j].width && y>cells[i][j].y && y<cells[i][j].y+cells[i][j].width){
+                    cells[i][j].flaged=!cells[i][j].flaged
+                }
+            }
+        }
+    }
+}
 function winCheck(){
     var count=0;
     for(var i=0;i<rows;i++){
@@ -86,19 +100,14 @@ function mousePressed(){
     for(var i=0;i<rows;i++){
         for(var j=0;j<columns;j++){
             if(x>cells[i][j].x && x<cells[i][j].x+cells[i][j].width && y>cells[i][j].y && y<cells[i][j].y+cells[i][j].width){
-                if(mouseButton===RIGHT){
-                    cells[i][j].flaged=!cells[i][j].flaged
+                cells[i][j].revealed=true;
+                if(cells[i][j].mine){
+                    // game over
+                    revealAll();
                 }
-                else{
-                    cells[i][j].revealed=true;
-                    if(cells[i][j].mine){
-                        // game over
-                        revealAll();
-                    }
-                    if(cells[i][j].neighbourMine==0 && !cells[i][j].mine){
-                        cells[i][j].exploreNeighbour(cells);
-                        return;
-                    }
+                if(cells[i][j].neighbourMine==0 && !cells[i][j].mine){
+                    cells[i][j].exploreNeighbour(cells);
+                    return;
                 }
             }
         }
