@@ -3,7 +3,7 @@ var rows=20;
 var columns=20;
 var mines=50;
 function setup(){
-    createCanvas(201,201);
+    createCanvas(201,251);
     for(var i=0;i<rows;i++){
         cells[i]=[];
         for(var j=0;j<columns;j++){
@@ -40,7 +40,7 @@ function setup(){
     }
 }
 function draw(){
-    background(0);
+    // background(0);
     for(var i=0;i<rows;i++){
         for(var j=0;j<columns;j++){
             cells[i][j].show();
@@ -53,7 +53,9 @@ function revealAll(){
             cells[i][j].revealed=true;
         }
     }
-    alert("Game Over!!!");
+    fill(255,0,0);
+    textSize(35);
+    text("Game Over!!!",0,232);
 }
 function mousePressed(){
     var x=mouseX;
@@ -64,7 +66,7 @@ function mousePressed(){
                 cells[i][j].revealed=true;
                 if(cells[i][j].mine){
                     // game over
-                    // revealAll();
+                    revealAll();
                 }
                 if(cells[i][j].neighbourMine==0 && !cells[i][j].mine){
                     cells[i][j].exploreNeighbour(cells);
