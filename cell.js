@@ -8,10 +8,17 @@ class Cell{
         this.revealed=false;
         this.mine=false;
         this.neighbourMine=0;
+        this.flaged=false;
     }
     show(){
-        fill(255);
-        rect(this.x,this.y,this.width,this.width);
+        if(this.flaged){
+            fill(0,255,0);
+            ellipse(this.x+5,this.y+5,6,6);
+        }
+        else{
+            fill(255);
+            rect(this.x,this.y,this.width,this.width);
+        }
         if(this.revealed){
             if(this.mine){
                 fill(255,0,0);
