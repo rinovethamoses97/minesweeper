@@ -49,7 +49,7 @@ function draw(){
     winCheck();
 }
 function keyPressed(){
-    if(keyCode=32){
+    if(keyCode==32){
         // when space bar is pressed;
         var x=mouseX;
         var y=mouseY;
